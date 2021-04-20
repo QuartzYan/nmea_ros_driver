@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="nmea_com" default="/dev/gps_com"/>
+  <arg name="baudrate" default="115200"/>
+
+  <!-- gps driver -->
+  <node pkg="nmea_ros_driver" type="nmea_driver_node" name="nmea_ros_driver" output="screen">
+    <param name="nmea_com"    type="string"   value="$(arg nmea_com)"/>
+    <param name="baudrate"    type="int"      value="$(arg baudrate)"/>
+  </node>
+
+  <!-- nmea msg analyze -->
+  <node pkg="nmea_ros_driver" type="nmea_analyze_node" name="nmea_analyze_node" output="screen">
+    <param name="frame_id"        type="string"   value="/gps_link"/>
+    <param name="nmea_topic_name" type="string"   value="/nmea_msg"/>
+  </node>
+  
+</launch>
