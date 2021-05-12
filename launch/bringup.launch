@@ -2,6 +2,8 @@
 <launch>
   <arg name="nmea_com" default="/dev/gps_com"/>
   <arg name="baudrate" default="115200"/>
+  <arg name="frame_id" default="/main_gps_link"/>
+  <arg name="pub_gps_odom_tf" default="false"/>
 
   <!-- gps driver -->
   <node pkg="nmea_ros_driver" type="nmea_driver_node" name="nmea_ros_driver" output="screen">
@@ -11,8 +13,23 @@
 
   <!-- nmea msg analyze -->
   <node pkg="nmea_ros_driver" type="nmea_analyze_node" name="nmea_analyze_node" output="screen">
-    <param name="frame_id"        type="string"   value="/gps_link"/>
+    <param name="frame_id"        type="string"   value="$(arg frame_id)"/>
     <param name="nmea_topic_name" type="string"   value="/nmea_msg"/>
+    <param name="enable_custom"   type="bool"     value="true"/>
+    <param name="enable_gga"      type="bool"     value="true"/>
+    <param name="enable_gsa"      type="bool"     value="true"/>
+    <param name="enable_gsv"      type="bool"     value="true"/>
+    <param name="enable_rmc"      type="bool"     value="true"/>
+    <param name="enable_vtg"      type="bool"     value="true"/>
+    <param name="enable_gll"      type="bool"     value="true"/>
   </node>
+
+  <!-- GPS Odom -->
+  <!-- <node pkg="nmea_ros_driver" type="nmea_odom_node" name="nmea_odom_node" output="screen">
+    <param name="pub_odom_tf"     type="bool"     value="$(arg pub_gps_odom_tf)"/>
+    <param name="base_frame_id"   type="string"   value="base_link"/>
+    <param name="odom_frame_id"   type="string"   value="odom"/>
+    <param name="nmea_frame_id"   type="string"   value="$(arg frame_id)"/>
+  </node> -->
   
 </launch>
