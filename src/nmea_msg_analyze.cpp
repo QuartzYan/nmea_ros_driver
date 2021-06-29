@@ -363,20 +363,20 @@ bool NmeaMsgAnalyzeNode::procGGA(const std::vector<std::string> msg_list)
 
   if (msg_list[3] == "N")
   {
-    nav_msg.latitude = stringToNum<int>(msg_list[2].substr(0, 2)) + stringToNum<double>(msg_list[2].substr(2));
+    nav_msg.latitude = stringToNum<int>(msg_list[2].substr(0, 2)) + stringToNum<double>(msg_list[2].substr(2)) / 60.0;
   }
   else
   {
-    nav_msg.latitude = -1.0 * (stringToNum<int>(msg_list[2].substr(0, 2)) + stringToNum<double>(msg_list[2].substr(2)));
+    nav_msg.latitude = -1.0 * (stringToNum<int>(msg_list[2].substr(0, 2)) + stringToNum<double>(msg_list[2].substr(2))) / 60.0;
   }
 
   if (msg_list[5] == "E")
   {
-    nav_msg.longitude = stringToNum<int>(msg_list[4].substr(0, 3)) + stringToNum<double>(msg_list[4].substr(3));
+    nav_msg.longitude = stringToNum<int>(msg_list[4].substr(0, 3)) + stringToNum<double>(msg_list[4].substr(3)) / 60.0;
   }
   else
   {
-    nav_msg.longitude = -1.0 * (stringToNum<int>(msg_list[4].substr(0, 3)) + stringToNum<double>(msg_list[4].substr(3)));
+    nav_msg.longitude = -1.0 * (stringToNum<int>(msg_list[4].substr(0, 3)) + stringToNum<double>(msg_list[4].substr(3))) / 60.0;
   }
 
   nav_msg.altitude = stringToNum<double>(msg_list[9]);
