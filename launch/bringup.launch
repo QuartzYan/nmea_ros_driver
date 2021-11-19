@@ -15,13 +15,13 @@
   <node pkg="nmea_ros_driver" type="nmea_analyze_node" name="nmea_analyze_node" output="screen">
     <param name="frame_id"        type="string"   value="$(arg frame_id)"/>
     <param name="nmea_topic_name" type="string"   value="/nmea_msg"/>
-    <param name="enable_custom"   type="bool"     value="true"/>
-    <param name="enable_gga"      type="bool"     value="true"/>
-    <param name="enable_gsa"      type="bool"     value="true"/>
-    <param name="enable_gsv"      type="bool"     value="true"/>
-    <param name="enable_rmc"      type="bool"     value="true"/>
-    <param name="enable_vtg"      type="bool"     value="true"/>
-    <param name="enable_gll"      type="bool"     value="true"/>
+    <param name="enable_custom"   type="bool"     value="false"/>
+    <param name="enable_gga"      type="bool"     value="false"/>
+    <param name="enable_gsa"      type="bool"     value="false"/>
+    <param name="enable_gsv"      type="bool"     value="false"/>
+    <param name="enable_rmc"      type="bool"     value="false"/>
+    <param name="enable_vtg"      type="bool"     value="false"/>
+    <param name="enable_gll"      type="bool"     value="false"/>
   </node>
 
   <!-- GPS Odom -->
